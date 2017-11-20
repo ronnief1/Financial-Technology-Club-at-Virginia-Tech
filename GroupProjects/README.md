@@ -1,1 +1,1 @@
-This folder is will our group projects will go.
+This folder is where our group projects will go.
