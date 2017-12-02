@@ -12,6 +12,7 @@ data.head(3)
 #to use a different transform or no transform at all
 #time series of raw low variable
 plt.plot(data['Low'])
+plt.title('Lows')
 plt.show()
 
 #want a stationary time series because time series models rely on this assumption, clearly this has increasing mean
@@ -37,10 +38,12 @@ print(dfoutput)
 #means we need some sort of transformation
 log_low = np.log(data['Low'])
 plt.plot(log_low)
+plt.title('Log Transform of Lows')
 plt.show()
 expwighted_avg = pd.ewma(log_low, halflife=12)
 plt.plot(log_low)
 plt.plot(expwighted_avg, color='red')
+plt.title('EWMA of Log Transform')
 plt.show()
 ts_log_ewma_diff = log_low - expwighted_avg
 
@@ -51,7 +54,7 @@ plt.plot(ts_log_ewma_diff, color='blue',label='Original')
 plt.plot(rollmean, color='red', label='Rolling Mean')
 plt.plot(rollstd, color='black', label = 'Rolling Std')
 plt.legend(loc='best')
-plt.title('Rolling Mean & Standard Deviation')
+plt.title('Rolling Mean & Standard Deviation of Difference Between Log and EWMA of Log')
 plt.show()
 
 print('Results of Dickey-Fuller Test for Log Transform of Lows:')
